@@ -1,6 +1,8 @@
 import { Box, List, ListItem, ListItemText } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export function SideBar({ handleOpen }) {
+  const navigate = useNavigate();
   return (
     <Box
       role="presentation"
@@ -9,9 +11,15 @@ export function SideBar({ handleOpen }) {
       }}
     >
       <List>
-        {list.map((text, index) => (
-          <ListItem button key={index}>
-            <ListItemText primary={text} />
+        {list.map(({ name, path }, index) => (
+          <ListItem
+            button
+            key={index}
+            onClick={() => {
+              navigate(path);
+            }}
+          >
+            <ListItemText primary={name} />
           </ListItem>
         ))}
       </List>
@@ -19,4 +27,13 @@ export function SideBar({ handleOpen }) {
   );
 }
 
-const list = ["products", "Starred"];
+const list = [
+  {
+    name: "Products",
+    path: "products",
+  },
+  {
+    name: "Add product",
+    path: "add-product",
+  },
+];
