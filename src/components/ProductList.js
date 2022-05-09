@@ -1,5 +1,4 @@
 import { DataGrid } from "@mui/x-data-grid";
-import "./App.css";
 
 export function ProductList() {
   return (

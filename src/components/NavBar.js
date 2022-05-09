@@ -8,10 +8,9 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
-import "./App.css";
 import { useContext } from "react";
-import { UserContext } from "./Layout";
-import { ColorModeContext } from "./theme";
+import { UserContext } from "../layouts/Layout";
+import { ColorModeContext } from "../theme";
 
 export function NavBar() {
   const handleOpen = useContext(UserContext);
@@ -35,7 +34,7 @@ export function NavBar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Grocery Store
+              Grocery Store Tergeltengis
             </Typography>
 
             <MaterialUISwitch

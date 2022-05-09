@@ -1,8 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { AddProduct } from "./AddProduct";
+import { AddProduct } from "./components/AddProduct";
 
-import { Layout } from "./Layout";
-import { ProductList } from "./ProductList";
+import { Layout } from "./layouts/Layout";
+import { ProductList } from "./components/ProductList";
 
 export const Router = () => {
   return (
