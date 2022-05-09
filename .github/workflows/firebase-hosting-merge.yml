@@ -12,9 +12,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn && yarn build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GITHUB_ACTION_B3F15 }}'
-          channelId: live
-          projectId: github-action-b3f15
+      - run: firebase deploy
+  
