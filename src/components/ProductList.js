@@ -1,10 +1,15 @@
+import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { AddProduct } from "./AddProduct";
 
 export function ProductList() {
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid rows={rows} columns={columns} pageSize={5} />
-    </div>
+    <>
+      <AddProduct />
+      <Box sx={{ height: 400, width: "100%", mt: 1 }}>
+        <DataGrid rows={rows} columns={columns} pageSize={5} />
+      </Box>
+    </>
   );
 }
 
