@@ -1,46 +1,41 @@
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { createContext, useState } from "react";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#4caf50",
-    },
-  },
-  typography: {
-    h6: {
-      fontFamily: ["Roboto"],
-    },
-  },
-});
-
-const themeDark = createTheme({
-  palette: {
-    primary: {
-      main: "#673ab7",
-    },
-  },
-  typography: {
-    h6: {
-      fontFamily: ["Roboto"],
-    },
-  },
-});
+import { ThemeProvider } from "react-bootstrap";
 
 export const ColorModeContext = createContext();
 
 export function ThemeComponent({ children }) {
   const [checked, setChecked] = useState(true);
-
   const handleChange = () => {
+    checked ? colorMode("light", "dark") : colorMode("dark", "light");
     setChecked(!checked);
   };
-
   return (
     <ColorModeContext.Provider value={{ handleChange, checked }}>
-      <ThemeProvider theme={checked ? theme : themeDark}>
-        {children}
-      </ThemeProvider>
+      <ThemeProvider>{children}</ThemeProvider>
     </ColorModeContext.Provider>
   );
 }
+
+const colorMode = (mode1, mode2) => {
+  let re = new RegExp(`${mode1}`, "g");
+  // body
+  if (document.body.classList.contains(`bg-${mode1}`)) {
+    document.body.classList.replace(`bg-${mode1}`, `bg-${mode2}`);
+  } else {
+    document.body.classList.add(`bg-${mode2}`);
+  }
+  //navbar
+  document.querySelectorAll(`.navbar-${mode1}`).forEach((element) => {
+    element.className = element.className.replace(re, `${mode2}`);
+  });
+  //button
+  document.querySelectorAll(`button`).forEach((element) => {
+    element.className = element.className.replace(re, mode2);
+  });
+  // text
+  if (document.body.classList.contains(`text-${mode2}`)) {
+    document.body.classList.replace(`text-${mode2}`, `text-${mode1}`);
+  } else {
+    document.body.classList.add(`text-${mode1}`);
+  }
+};
